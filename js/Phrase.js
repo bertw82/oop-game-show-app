@@ -5,7 +5,6 @@
 class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
-        // this.game = new Game();
     }
 
     /**
@@ -13,7 +12,7 @@ class Phrase {
     */
     addPhraseToDisplay() {
         const ul = document.querySelector('#phrase ul');
-        const loadPhrase = getRandomPhrase();
+        const loadPhrase = this.phrase;
         const loadPhraseArray = loadPhrase.split('');
         for (let i = 0; i < loadPhraseArray.length; i++) {
             const li = document.createElement('li');
@@ -21,7 +20,7 @@ class Phrase {
             if (loadPhraseArray[i] === ' ') {
                 li.className = 'space';
             } else {
-                li.classList.add('hide', 'letter', '[i]')
+                li.classList.add('hide', 'letter', loadPhraseArray[i])
             }
             ul.appendChild(li);
         }

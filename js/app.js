@@ -2,8 +2,8 @@
  * Project 4 - OOP Game App
  * app.js */
 
-// const game = new Game();
-// game.getRandomPhrase().addPhraseToDisplay();
+const game = new Game();
+game.getRandomPhrase().addPhraseToDisplay();
 
 // const game = new Game();
 // const randomPhrase = game.getRandomPhrase();

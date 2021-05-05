@@ -10,7 +10,7 @@ class Game {
     }
 
     /**
-    * Get phrases for use in game from random phrase API: https://github.com/lukePeavey/quotable
+    * Get phrases for use in game 
     * @return {array} An array of phrases that could be used in the game
     */
     createPhrases() {  
@@ -22,16 +22,6 @@ class Game {
             "Happy as a clam"
         ];  
         return phraseArray.map(phrase => new Phrase(phrase));
-        // let phraseArray = [];    
-        // for (let i = 0; i < 5; i++) {
-        // fetch('https://api.quotable.io/random?maxLength=30')
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         phraseArray.push(new Phrase(data.content));
-        //     })
-        //     .catch(error => console.log('Looks like there was a problem!', error))   
-        // };
-        //     return phraseArray;
     }
 
     /**
@@ -40,6 +30,6 @@ class Game {
     */
     getRandomPhrase() {
         const randomPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
-        return randomPhrase.phrase;
+        return randomPhrase;
     };
 }
