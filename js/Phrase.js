@@ -5,9 +5,26 @@
 class Phrase {
     constructor(phrase) {
         this.phrase = phrase.toLowerCase();
+        // this.game = new Game();
     }
 
-    // addPhraseToDisplay() {
-        
-    // }
+    /**
+    * Display phrase on game board
+    */
+    addPhraseToDisplay() {
+        const ul = document.querySelector('#phrase ul');
+        const loadPhrase = getRandomPhrase();
+        const loadPhraseArray = loadPhrase.split('');
+        for (let i = 0; i < loadPhraseArray.length; i++) {
+            const li = document.createElement('li');
+            li.innerHTML = loadPhraseArray[i];
+            if (loadPhraseArray[i] === ' ') {
+                li.className = 'space';
+            } else {
+                li.classList.add('hide', 'letter', '[i]')
+            }
+            ul.appendChild(li);
+        }
+
+    }
 }
