@@ -16,9 +16,9 @@ class Game {
     createPhrases() {  
         const phraseArray = [
             "A dime a dozen",
-            "Back to square one",
+            "My cup of tea",
             "Close but no cigar",
-            "Fish out of water",
+            "On cloud nine",
             "Happy as a clam"
         ];  
         return phraseArray.map(phrase => new Phrase(phrase));
@@ -32,4 +32,14 @@ class Game {
         const randomPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
         return randomPhrase;
     };
+
+    /**
+    * Begins game by selecting a random phrase and displaying it to user
+    */
+    startGame() {
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'none';
+        this.activePhrase = this.getRandomPhrase();
+        this.activePhrase.addPhraseToDisplay();
+    }
 }
