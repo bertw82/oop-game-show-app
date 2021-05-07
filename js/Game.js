@@ -42,8 +42,17 @@ class Game {
         this.activePhrase.addPhraseToDisplay();
     }
 
-    handleInteraction() {
-
+    handleInteraction(button) {
+        const currentLetter = button.innerHTML;
+        button.disabled = true;
+        if (this.activePhrase.checkLetter(currentLetter)) {
+            button.classList.add('chosen');
+            this.activePhrase.showMatchedLetter(currentLetter);
+            this.gameOver(this.checkForWin());
+        } else {
+            button.classList.add('wrong');
+            this.removeLife();
+        }
     }
     /**
     * Checks for winning move
@@ -78,6 +87,7 @@ class Game {
             overlay.classList.remove('start');
             overlay.classList.add('lose');
             document.getElementById('game-over-message').innerHTML = 'Sorry, better luck next time!';
+            this.resetGame();
         }
     }
 
@@ -92,6 +102,26 @@ class Game {
             overlay.classList.remove('start');
             overlay.classList.add('win');
             document.getElementById('game-over-message').innerHTML = 'Congrats, you won!';
+            this.resetGame();
         }
     };
+
+    /**
+     * Reset Game for a new game
+     */
+    resetGame() {
+        const ul = document.querySelector('#phrase ul');
+        // code below from https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
+        while (ul.firstChild) {
+            ul.removeChild(ul.firstChild);
+        }
+        const keys = document.querySelectorAll('.key');
+        for (let i = 0; i < keys.length; i++) {
+            keys[i].classList.remove('chosen', 'wrong');
+            keys[i].disabled = false;
+        }
+        this.missed = 0;
+        const heartImg = document.querySelectorAll('.tries img');
+        heartImg.forEach(heart => heart.src = 'images/liveHeart.png');
+    }
 }
