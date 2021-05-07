@@ -43,14 +43,14 @@ class Game {
     }
 
     handleInteraction(button) {
-        const currentLetter = button.innerHTML;
+        const currentLetter = button.textContent;
         button.disabled = true;
         if (this.activePhrase.checkLetter(currentLetter)) {
             button.classList.add('chosen');
             this.activePhrase.showMatchedLetter(currentLetter);
             this.gameOver(this.checkForWin());
         } else {
-            button.classList.add('wrong');
+            button.classList.add('wrong', 'animate__animated', 'animate__headShake');
             this.removeLife();
         }
     }
@@ -86,7 +86,9 @@ class Game {
             overlay.style.display = 'flex';
             overlay.classList.remove('start');
             overlay.classList.add('lose');
-            document.getElementById('game-over-message').innerHTML = 'Sorry, better luck next time!';
+            const message = document.getElementById('game-over-message');
+            message.innerHTML = 'Sorry, better luck next time!';
+            message.classList.add('animate__animated', 'animate__shakeX');
             this.resetGame();
         }
     }
@@ -101,7 +103,9 @@ class Game {
             overlay.style.display = 'flex';
             overlay.classList.remove('start');
             overlay.classList.add('win');
-            document.getElementById('game-over-message').innerHTML = 'Congrats, you won!';
+            const message = document.getElementById('game-over-message');
+            message.innerHTML = 'Congrats, you won!';
+            message.classList.add('animate__animated', 'animate__shakeY');
             this.resetGame();
         }
     };

@@ -50,7 +50,7 @@ class Phrase {
             for (let i = 0; i < phraseLi.length; i++) {
                 if (phraseLi[i].classList.contains(letter)){
                     phraseLi[i].classList.remove('hide');
-                    phraseLi[i].classList.add('show');
+                    phraseLi[i].classList.add('show', 'animate__animated', 'animate__tada');
                 }
             }
         }
