@@ -11,7 +11,6 @@ class Phrase {
     * Display phrase on game board
     */
     addPhraseToDisplay() {
-        const ul = document.querySelector('#phrase ul');
         const loadPhrase = this.phrase;
         const loadPhraseArray = loadPhrase.split('');
         for (let i = 0; i < loadPhraseArray.length; i++) {
@@ -22,7 +21,7 @@ class Phrase {
             } else {
                 li.classList.add('hide', 'letter', loadPhraseArray[i])
             }
-            ul.appendChild(li);
+            document.querySelector('#phrase ul').appendChild(li);
         }
     }
 
@@ -47,7 +46,6 @@ class Phrase {
     */
     showMatchedLetter(letter) {
         if (this.checkLetter(letter)) {
-            console.log('hello');
             const phraseLi = document.querySelectorAll('#phrase ul li');
             for (let i = 0; i < phraseLi.length; i++) {
                 if (phraseLi[i].classList.contains(letter)){
