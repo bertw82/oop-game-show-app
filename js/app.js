@@ -12,13 +12,13 @@ startBtn.addEventListener('click', () => {
     document.getElementById('game-over-message').classList.remove('animate__animated', 'animate__lightSpeedInRight', 'animate__lightSpeedInLeft');
 });
 
-// listen for keyboard click event
+// listen for webpage keyboard click event and keyboard keydown event
 const keys = document.querySelectorAll('.key');
+
 keys.forEach(key => key.addEventListener('click', () => {
     game.handleInteraction(key);
 }));
 
-// listen for keydown event
 document.addEventListener('keydown', (e) => {
     const keyPressed = e.key;
     if (game.activePhrase.checkLetter(keyPressed)) {

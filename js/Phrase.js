@@ -11,15 +11,14 @@ class Phrase {
     * Display phrase on game board
     */
     addPhraseToDisplay() {
-        const loadPhrase = this.phrase;
-        const loadPhraseArray = loadPhrase.split('');
+        const loadPhraseArray = this.phrase.split('');
         for (let i = 0; i < loadPhraseArray.length; i++) {
             const li = document.createElement('li');
             li.innerHTML = loadPhraseArray[i];
             if (loadPhraseArray[i] === ' ') {
                 li.className = 'space';
             } else {
-                li.classList.add('hide', 'letter', loadPhraseArray[i])
+                li.classList.add('hide', 'letter', loadPhraseArray[i]);
             }
             document.querySelector('#phrase ul').appendChild(li);
         }
@@ -30,15 +29,10 @@ class Phrase {
     * @param (string) letter - Letter to check
     */
     checkLetter(letter) {
-        const currentPhrase = this.phrase;
-        const currentPhraseArray = currentPhrase.split('');
+        const currentPhraseArray = this.phrase.split('');
         const result = currentPhraseArray.filter(char => char === letter);
-        if (result.length > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    };
+        return result.length > 0 ? true : false;
+    }
 
     /**
     * Displays passed letter on screen after a match is found
@@ -55,4 +49,4 @@ class Phrase {
             }
         }
     }
-};
+}

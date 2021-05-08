@@ -21,7 +21,12 @@ class Game {
             "My cup of tea",
             "Close but no cigar",
             "On cloud nine",
-            "Happy as a clam"
+            "Happy as a clam",
+            "A piece of cake",
+            "Man of few words",
+            "The plot thickens",
+            "Benefit of the doubt",
+            "Easy as pie"
         ];  
         return phraseArray.map(phrase => new Phrase(phrase));
     }
@@ -33,7 +38,7 @@ class Game {
     getRandomPhrase() {
         const randomPhrase = this.phrases[Math.floor(Math.random() * this.phrases.length)];
         return randomPhrase;
-    };
+    }
 
     /**
     * Begins game by selecting a random phrase and displaying it to user
@@ -69,11 +74,12 @@ class Game {
                 result += 1;
             } 
         }
-        if (result > 0) {
-            return false;
-        } else if (result === 0) {
-            return true;
-        }
+        return result > 0 ? false : true;
+        // if (result > 0) {
+        //     return false;
+        // } else if (result === 0) {
+        //     return true;
+        // }
     }
     /**
     * Increases the value of the missed property
@@ -81,8 +87,7 @@ class Game {
     * Checks if player has remaining lives and ends game if player is out
     */
     removeLife() {
-        const heartImg = document.querySelectorAll('.tries img');
-        heartImg[this.missed].src = 'images/lostHeart.png'
+        document.querySelectorAll('.tries img')[this.missed].src = 'images/lostHeart.png';
         this.missed += 1;
         if (this.missed === 5) {
             this.overlay.style.display = 'flex';
@@ -107,14 +112,14 @@ class Game {
             this.message.classList.add('animate__animated', 'animate__lightSpeedInRight');
             this.resetGame();
         }
-    };
+    }
 
     /**
      * Reset Game for a new game
      */
     resetGame() {
         const ul = document.querySelector('#phrase ul');
-        // code below from https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
+        // while loop from https://www.javascripttutorial.net/dom/manipulating/remove-all-child-nodes/
         while (ul.firstChild) {
             ul.removeChild(ul.firstChild);
         }
@@ -124,7 +129,6 @@ class Game {
             keys[i].disabled = false;
         }
         this.missed = 0;
-        const heartImg = document.querySelectorAll('.tries img');
-        heartImg.forEach(heart => heart.src = 'images/liveHeart.png');
+        document.querySelectorAll('.tries img').forEach(heart => heart.src = 'images/liveHeart.png');
     }
 }
