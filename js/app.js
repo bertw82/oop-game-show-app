@@ -9,6 +9,7 @@ const startBtn = document.getElementById('btn__reset');
 startBtn.addEventListener('click', () => {
     game = new Game();
     game.startGame();
+    document.getElementById('game-over-message').classList.remove('animate__animated', 'animate__lightSpeedInRight', 'animate__lightSpeedInLeft');
 });
 
 // listen for keyboard click event

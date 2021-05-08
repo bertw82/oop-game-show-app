@@ -8,6 +8,7 @@ class Game {
         this.phrases = this.createPhrases();
         this.activePhrase = null;
         this.overlay = document.getElementById('overlay');
+        this.message = document.getElementById('game-over-message');
     }
 
     /**
@@ -87,9 +88,8 @@ class Game {
             this.overlay.style.display = 'flex';
             this.overlay.classList.remove('start');
             this.overlay.classList.add('lose');
-            const message = document.getElementById('game-over-message');
-            message.innerHTML = 'Sorry, better luck next time!';
-            message.classList.add('animate__animated', 'animate__shakeX');
+            this.message.innerHTML = 'Sorry, better luck next time!';
+            this.message.classList.add('animate__animated', 'animate__lightSpeedInLeft');
             this.resetGame();
         }
     }
@@ -103,9 +103,8 @@ class Game {
             this.overlay.style.display = 'flex';
             this.overlay.classList.remove('start');
             this.overlay.classList.add('win');
-            const message = document.getElementById('game-over-message');
-            message.innerHTML = 'Congrats, you won!';
-            message.classList.add('animate__animated', 'animate__shakeY');
+            this.message.innerHTML = 'Congrats, you won!';
+            this.message.classList.add('animate__animated', 'animate__lightSpeedInRight');
             this.resetGame();
         }
     };
