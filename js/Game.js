@@ -39,6 +39,7 @@ class Game {
     */
     startGame() {
         this.overlay.style.display = 'none';
+        this.overlay.classList.remove('win', 'lose');
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     }
@@ -83,10 +84,9 @@ class Game {
         heartImg[this.missed].src = 'images/lostHeart.png'
         this.missed += 1;
         if (this.missed === 5) {
-            const overlay = document.getElementById('overlay');
-            overlay.style.display = 'flex';
-            overlay.classList.remove('start');
-            overlay.classList.add('lose');
+            this.overlay.style.display = 'flex';
+            this.overlay.classList.remove('start');
+            this.overlay.classList.add('lose');
             const message = document.getElementById('game-over-message');
             message.innerHTML = 'Sorry, better luck next time!';
             message.classList.add('animate__animated', 'animate__shakeX');
@@ -100,10 +100,9 @@ class Game {
     */
     gameOver(gameWon) {
         if (gameWon && this.missed < 5) {
-            const overlay = document.getElementById('overlay');
-            overlay.style.display = 'flex';
-            overlay.classList.remove('start');
-            overlay.classList.add('win');
+            this.overlay.style.display = 'flex';
+            this.overlay.classList.remove('start');
+            this.overlay.classList.add('win');
             const message = document.getElementById('game-over-message');
             message.innerHTML = 'Congrats, you won!';
             message.classList.add('animate__animated', 'animate__shakeY');
