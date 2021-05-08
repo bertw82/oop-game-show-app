@@ -23,7 +23,8 @@ document.addEventListener('keydown', (e) => {
     if (game.activePhrase.checkLetter(keyPressed)) {
         for (let i = 0; i < keys.length; i++) {
             if (keys[i].textContent === keyPressed) {
-                keys[i].classList.add('chosen');
+                keys[i].classList.add('chosen', 'animate__animated', 'animate__pulse');
+                keys[i].disabled = true;
                 game.activePhrase.showMatchedLetter(keyPressed);
                 game.gameOver(game.checkForWin());
             }
@@ -31,7 +32,8 @@ document.addEventListener('keydown', (e) => {
     } else {
         for (let i = 0; i < keys.length; i++) {
             if (keys[i].textContent === keyPressed) {
-                keys[i].classList.add('wrong');
+                keys[i].disabled = true;
+                keys[i].classList.add('wrong', 'animate__animated', 'animate__headShake');
                 game.removeLife();
             }
         }

@@ -7,6 +7,7 @@ class Game {
         this.missed = 0;
         this.phrases = this.createPhrases();
         this.activePhrase = null;
+        this.overlay = document.getElementById('overlay');
     }
 
     /**
@@ -37,7 +38,7 @@ class Game {
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
-        document.getElementById('overlay').style.display = 'none';
+        this.overlay.style.display = 'none';
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     }
@@ -46,7 +47,7 @@ class Game {
         const currentLetter = button.textContent;
         button.disabled = true;
         if (this.activePhrase.checkLetter(currentLetter)) {
-            button.classList.add('chosen');
+            button.classList.add('chosen', 'animate__animated', 'animate__pulse');
             this.activePhrase.showMatchedLetter(currentLetter);
             this.gameOver(this.checkForWin());
         } else {
@@ -121,7 +122,7 @@ class Game {
         }
         const keys = document.querySelectorAll('.key');
         for (let i = 0; i < keys.length; i++) {
-            keys[i].classList.remove('chosen', 'wrong');
+            keys[i].classList.remove('chosen', 'wrong', 'animate__animated', 'animate__headShake', 'animate__pulse');
             keys[i].disabled = false;
         }
         this.missed = 0;
