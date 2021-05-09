@@ -16,27 +16,9 @@ startBtn.addEventListener('click', () => {
 const keys = document.querySelectorAll('.key');
 
 keys.forEach(key => key.addEventListener('click', () => {
-    game.handleInteraction(key);
+    game.handleInteraction(key.textContent);
 }));
 
 document.addEventListener('keydown', (e) => {
-    const keyPressed = e.key;
-    if (game.activePhrase.checkLetter(keyPressed)) {
-        for (let i = 0; i < keys.length; i++) {
-            if (keys[i].textContent === keyPressed) {
-                keys[i].classList.add('chosen', 'animate__animated', 'animate__pulse');
-                keys[i].disabled = true;
-                game.activePhrase.showMatchedLetter(keyPressed);
-                game.gameOver(game.checkForWin());
-            }
-        }
-    } else {
-        for (let i = 0; i < keys.length; i++) {
-            if (keys[i].textContent === keyPressed && keys[i].disabled === false) {
-                keys[i].disabled = true;
-                keys[i].classList.add('wrong', 'animate__animated', 'animate__headShake');
-                game.removeLife();
-            }
-        }
-    }
+    game.handleInteraction(e.key);
 });

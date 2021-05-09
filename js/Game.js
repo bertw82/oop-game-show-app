@@ -51,15 +51,23 @@ class Game {
     }
 
     handleInteraction(button) {
-        const currentLetter = button.textContent;
-        button.disabled = true;
-        if (this.activePhrase.checkLetter(currentLetter)) {
-            button.classList.add('chosen', 'animate__animated', 'animate__pulse');
-            this.activePhrase.showMatchedLetter(currentLetter);
-            this.gameOver(this.checkForWin());
+        if (this.activePhrase.checkLetter(button)) {
+            for (let i = 0; i < keys.length; i++) {
+                if (keys[i].textContent === button) {
+                    keys[i].classList.add('chosen', 'animate__animated', 'animate__pulse');
+                    keys[i].disabled = true;
+                    this.activePhrase.showMatchedLetter(button);
+                    this.gameOver(this.checkForWin());
+                }
+            }
         } else {
-            button.classList.add('wrong', 'animate__animated', 'animate__headShake');
-            this.removeLife();
+            for (let i = 0; i < keys.length; i++) {
+                if (keys[i].textContent === button && keys[i].disabled === false) {
+                    keys[i].disabled = true;
+                    keys[i].classList.add('wrong', 'animate__animated', 'animate__headShake');
+                    this.removeLife();
+                }
+            }
         }
     }
     /**
@@ -75,12 +83,8 @@ class Game {
             } 
         }
         return result > 0 ? false : true;
-        // if (result > 0) {
-        //     return false;
-        // } else if (result === 0) {
-        //     return true;
-        // }
     }
+    
     /**
     * Increases the value of the missed property
     * Removes a life from the scoreboard
