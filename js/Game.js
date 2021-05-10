@@ -7,8 +7,6 @@ class Game {
         this.missed = 0;
         this.phrases = this.createPhrases();
         this.activePhrase = null;
-        this.overlay = document.getElementById('overlay');
-        this.message = document.getElementById('game-over-message');
     }
 
     /**
@@ -44,8 +42,8 @@ class Game {
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
-        this.overlay.style.display = 'none';
-        this.overlay.classList.remove('win', 'lose');
+        overlay.style.display = 'none';
+        overlay.classList.remove('win', 'lose');
         this.activePhrase = this.getRandomPhrase();
         this.activePhrase.addPhraseToDisplay();
     }
@@ -94,11 +92,11 @@ class Game {
         document.querySelectorAll('.tries img')[this.missed].src = 'images/lostHeart.png';
         this.missed += 1;
         if (this.missed === 5) {
-            this.overlay.style.display = 'flex';
-            this.overlay.classList.remove('start');
-            this.overlay.classList.add('lose');
-            this.message.innerHTML = 'Sorry, better luck next time!';
-            this.message.classList.add('animate__animated', 'animate__lightSpeedInLeft');
+            overlay.style.display = 'flex';
+            overlay.classList.remove('start');
+            overlay.classList.add('lose');
+            message.innerHTML = 'Sorry, better luck next time!';
+            message.classList.add('animate__animated', 'animate__lightSpeedInLeft');
             this.resetGame();
         }
     }
@@ -109,11 +107,11 @@ class Game {
     */
     gameOver(gameWon) {
         if (gameWon && this.missed < 5) {
-            this.overlay.style.display = 'flex';
-            this.overlay.classList.remove('start');
-            this.overlay.classList.add('win');
-            this.message.innerHTML = 'Congrats, you won!';
-            this.message.classList.add('animate__animated', 'animate__lightSpeedInRight');
+            overlay.style.display = 'flex';
+            overlay.classList.remove('start');
+            overlay.classList.add('win');
+            message.innerHTML = 'Congrats, you won!';
+            message.classList.add('animate__animated', 'animate__lightSpeedInRight');
             this.resetGame();
         }
     }
